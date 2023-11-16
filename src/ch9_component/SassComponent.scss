@@ -1,0 +1,48 @@
+@import "./utils.scss"; // 변수 색상 선언
+
+$red: #fa5252;
+$blue: #339ad0;
+$green: #51cf66;
+$yellow: #fcc419;
+$purple: #845ef7;
+$orange: #ff922b;
+$pink: #f06595;
+
+// 재사용할 함수 만들기
+@mixin square($size) {
+  $calculated: 32px * $size;
+  width: $calculated;
+  height: $calculated;
+}
+
+// 두 번째 mixin 이름 변경
+@mixin largeSquare($size) {
+  $calculated: 60px * $size;
+  width: $calculated;
+  height: $calculated;
+}
+
+.SassTest {
+  display: flex;
+  .box {
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+
+    // 현재 요소를 가리키는 & -> box 를 가리킴
+    &.red {
+      background: $red;
+      // 위에서 만든 사각형 square 함수 재사용
+      @include square(1);
+    }
+
+    &.pink {
+      background: $pink;
+      // 위에서 만든 사각형 largeSquare 함수 재사용
+      @include largeSquare(2);
+    }
+
+    &:hover {
+      background: black;
+    }
+  }
+}
